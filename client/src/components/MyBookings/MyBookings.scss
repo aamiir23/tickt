@@ -1,0 +1,83 @@
+.MyBookings {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    > h2 {
+        @media (width<600px) {
+            font-size: 1.25rem;
+        }
+      font-size: 2rem;
+      text-align: center;
+      margin: 3rem;
+      // margin-bottom: 7rem;
+    }
+    > .form {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      input {
+        outline: none;
+        background: transparent;
+        font-size: 1.25rem;
+        border: none;
+        border-bottom: 1px solid grey;
+        margin: 10px;
+      //   width: 33%;
+        &::placeholder {
+          font-size: 1.25rem;
+        }
+      }
+      > button {
+        border: 2px solid grey;
+        border-radius: 10px;
+        padding: 10px 20px;
+        margin: 20px;
+        margin-top: 2rem;
+        font-size: 1.15rem;
+        background: White;
+        &:hover {
+          background: rgba(94, 94, 94, 0.1);
+          cursor: pointer;
+        }
+      }
+    }
+  
+    .result{
+        overflow-x: scroll;
+        @media (width<400px) {
+            max-width: 400px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        @media (400px<width<800px) {
+            max-width: 800px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        margin-top: 5rem;
+        td,th{
+            padding: 5px 10px;
+            
+            //   cursor: pointer;
+            // &:last-child{
+                //     border: none;
+                //     font-size: 2rem;
+                //     cursor: pointer;
+                // }
+                @media (width<600px) {
+                    border: 1px solid grey;
+                    padding: 5px 0;
+                }
+            }
+            thead>tr{
+          @media (width<600px) {
+              font-size: 0.8rem;
+          }
+          font-size: 1.2rem;
+      }
+    }
+  }
+  

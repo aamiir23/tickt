@@ -1,0 +1,68 @@
+To design a database schema for the flight booking system based on the provided use cases for both Users and Admin, we need to consider the entities involved and their relationships. Here is a proposed schema:
+Entities:
+
+    User
+        UserID (Primary Key)
+        Username
+        Password
+        Email
+        Phone Number
+    Admin
+        AdminID (Primary Key)
+        Username
+        Password
+        Email
+        Phone Number
+
+    # Can be modified only by admin: POST PUT DELETE
+    # user can view one or all  flights: /Flights, /Flights/:{FlightNumber}
+    Flight
+        FlightNumber (Primary Key)
+        DepartureCity
+        ArrivalCity
+        DepartureDateTime
+        ArrivalDateTime
+        SeatCount(default=60)
+
+    # user: GET booking/:{BookingID}
+    Booking
+        BookingID (Primary Key)
+        UserID (Foreign Key referencing User.UserID)
+        FlightNumber (Foreign Key referencing Flight.FlightNumber)
+        BookingDateTime
+
+Relationships:
+
+    Each User can have multiple bookings, so there is a one-to-many relationship between User and Booking.
+    Each Flight can have multiple bookings, so there is a one-to-many relationship between Flight and Booking.
+    Admins have separate login credentials and can manage flights, so they are distinct from regular Users.
+
+User Use Cases:
+
+    Login
+        Validate user credentials against the User table.
+    Sign up
+        Insert new user details into the User table.
+    Searching for flights based on date and time
+        Query the Flight table based on the provided date and time criteria.
+    Booking tickets on a flight based on availability
+        Check seat availability in the Flight table before creating a new booking entry.
+    My Booking
+        Retrieve bookings associated with the user from the Booking table based on UserID.
+    Logout
+        End the user's session.
+
+Admin Use Cases:
+
+    Login (Separate login for Admin)
+    # /AdminLogin
+        Validate admin credentials against the Admin table.
+    # POST /Flights/:{FlightNumber}
+    Add Flights
+        Insert new flight details into the Flight table.
+    Remove flights
+        Delete flight records from the Flight table.
+    View all the booking based on flight number and time
+        Query the Booking table based on FlightNumber to view all bookings for a specific flight.
+
+This schema provides a foundation for storing user information, flight details, and booking records while supporting the functionalities outlined in the use cases for both Users and Admins.
